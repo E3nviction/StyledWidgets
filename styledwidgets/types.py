@@ -1,16 +1,10 @@
 def px(val):
-	if val in ["none", None, "", 0]:
-		return " 0 "
 	return f" {val}px "
 
 def em(val):
-	if val in ["none", None, "", 0]:
-		return " 0 "
 	return f" {val}em "
 
 def rem(val):
-	if val in ["none", None, "", 0]:
-		return " 0 "
 	return f" {val}rem "
 
 def percent(val):
