@@ -1,0 +1,24 @@
+[project]
+name = "StyledWidgets"
+version = "0.0.1"
+requires-python = ">=3.11"
+authors = [
+  { name = "Enviction", email = "e3nviction@gmail.com" },
+]
+maintainers = [
+  { name = "Enviction", email = "e3nviction@gmail.com" },
+]
+description = "A library for styling fabric widgets."
+readme = "README.md"
+keywords = [
+  "widgets",
+  "gtk",
+  "linux",
+  "fabric",
+  "styling"
+]
+classifiers = ["Programming Language :: Python"]
+
+[project.urls]
+"Source" = "https://github.com/E3nviction/StyledWidgets"
+"Bug Tracker" = "https://github.com/E3nviction/StyledWidgets/issues"
