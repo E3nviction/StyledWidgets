@@ -1,0 +1,5 @@
+venv/
+shell.nix
+testing/
+
+__pycache__
