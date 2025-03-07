@@ -29,41 +29,57 @@ from fabric import Application
 from fabric.widgets.datetime import DateTime
 from fabric.widgets.centerbox import CenterBox
 from fabric.widgets.wayland import WaylandWindow as Window
-from styledwidgets import Styled, style
+from styledwidgets import Styled, style_dict, styler
 from styledwidgets.agents import textsize, colors, paddings
+from styledwidgets.styled import class_, on_active
 
 class MyDateTime(Styled, DateTime):
-    def __init__(self, **kwargs):
-        super().__init__(
-            style=style(
-                color=colors.white,
-                font_weight="bold",
-                font_family="cantarell, sans-serif",
-                font_size=textsize.normal,
-                padding=paddings.small,
-            ),
-            **kwargs
+  def __init__(self, **kwargs):
+    super().__init__(
+      style={
+        "default": style_dict(
+          color=colors.white,
+          font_weight="bold",
+          font_family="cantarell, sans-serif",
+          font_size=textsize.normal,
+          padding=paddings.small,
+        ),
+        class_("hover"): style_dict(
+          color=colors.orange,
+        ),
+        on_active: style_dict(
+          color=colors.red
         )
+      },
+      **kwargs
+    )
 
-class StatusBar(Styled, Window):
-    def __init__(self, **kwargs):
-        super().__init__(
-            layer="top",
-            anchor="left top right",
-            style=style(
-                background_color=colors.black,
-            ),
-            exclusivity="auto",
-            **kwargs
-        )
+class StatusBar(Window):
+  def __init__(self, **kwargs):
+    super().__init__(
+      layer="top",
+      anchor="left top right",
+      style=styler(
+        background_color=colors.black
+      ),
+      exclusivity="auto",
+      **kwargs
+    )
 
-        self.date_time = MyDateTime(formatters=["%d %b %H:%M"])
-        self.children = CenterBox(center_children=self.date_time)
+    self.date_time = MyDateTime(formatters=["%d %b %H:%M"])
+    self.date_time.connect("enter-notify-event", self.on_enter)
+    self.date_time.connect("leave-notify-event", self.on_leave)
+    self.children = CenterBox(center_children=self.date_time)
+
+  def on_enter(self, *_):
+    self.date_time.add_style_class("hover")
+  def on_leave(self, *_):
+    self.date_time.remove_style_class("hover")
 
 if __name__ == "__main__":
-    bar = StatusBar()
-    app = Application("bar-example", bar)
-    app.run()
+  bar = StatusBar()
+  app = Application("bar-example", bar)
+  app.run()
 ```
 
 ## Documentation
