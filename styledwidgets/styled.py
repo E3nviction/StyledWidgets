@@ -48,6 +48,7 @@ class StyleProvider:
 	@property
 	def build(self):
 		return self.__dict__
+
 def style(**dict):
 	# convert style_name to style-name
 	new_dict = dict.copy()
@@ -57,3 +58,20 @@ def style(**dict):
 			new_dict.pop(key)
 			new_dict[new_key] = value
 	return new_dict
+
+def styler(advanced_css: bool=True, use_gtk: bool=False, **dict):
+	new_dict = dict.copy()
+	for key, value in dict.items():
+		if "_" in key:
+			new_key = key.replace("_", "-")
+			new_dict.pop(key)
+			new_dict[new_key] = value
+	style = {}
+	if not use_gtk:
+		# We use update, so the order of the styles stays the same, if we were to just __set_item__ it would make everything unset
+		style.update({"all": "unset"})
+	style.update(new_dict)
+	if advanced_css: style = compile_acss(style)
+	style_string = ""
+	style_string = style_string + "".join([f"{k}: {v};" for k, v in style.items()])
+	return style_string
