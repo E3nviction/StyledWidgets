@@ -56,7 +56,7 @@ def styler(*args, advanced_css: bool=True, use_gtk: bool=False, enable_classes: 
 			raise ValueError("No arguments given")
 		dict = args[0]
 	new_dict = style_dict(**dict)
-	enable_classes = True if enable_classes is not None else [key for key in new_dict.keys()][0][0] in ["*", ".", "#"]
+	enable_classes = True if enable_classes is not None else [key for key in new_dict.keys()][0][0] in ["*", ".", "#"] or [key for key in new_dict.keys()][0] in ["default", "self"]
 	if enable_classes:
 		style_string = ""
 		for key, value in new_dict.items():
