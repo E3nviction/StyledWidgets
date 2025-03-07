@@ -1,5 +1,6 @@
 venv/
 shell.nix
 testing/
+main.py
 
 __pycache__
