@@ -84,6 +84,53 @@ class Paddings(Shared):
 	def __init__(self):
 		super().__init__(normal=".25rem")
 
+class Transitions:
+	def __init__(self):
+		self.none    = "none"
+		self.ease = "ease"
+		self.ease_in = "ease-in"
+		self.ease_out = "ease-out"
+		self.ease_in_out = "ease-in-out"
+		self.ease_bouncy = "cubic-bezier(0.175, 0.885, 0.32, 1.275)"
+
+		self.prop = "all"
+		self.ease_function = self.ease_in_out
+		self.ultra_slow = f"{self.prop} 2000ms {self.ease_function}"
+		self.tea_time   = f"{self.prop} 1000ms {self.ease_function}"
+		self.slowest    = f"{self.prop} 500ms {self.ease_function}"
+		self.slower     = f"{self.prop} 400ms {self.ease_function}"
+		self.medium     = f"{self.prop} 300ms {self.ease_function}"
+		self.normal     = f"{self.prop} 200ms {self.ease_function}"
+		self.fast       = f"{self.prop} 100ms {self.ease_function}"
+		self.faster     = f"{self.prop} 50ms {self.ease_function}"
+		self.fastest    = f"{self.prop} 20ms {self.ease_function}"
+		self.sonic      = f"{self.prop} 10ms {self.ease_function}"
+
+	def set_prop(self, prop):
+		self.prop = prop
+		return self
+
+	def set_ease_function(self, function):
+		self.ease_function = function
+		return self
+
+class BorderRadius(Shared):
+	def __init__(self):
+		super().__init__(
+			micro = "0.3rem",
+			tiny = "0.4rem",
+			small = "0.5rem",
+			normal = ".75rem",
+			big = "1rem",
+			large = "1.2rem",
+			macro = "1.4rem",
+			giganto = "1.6rem",
+			massive = "1.8rem",
+			huge = "2rem",
+			gigafantastico = "3rem",
+			endless = "50%"
+		)
+
 textsize = TextSize()
 """
 	textsize.micro          = "0.4rem"
@@ -140,4 +187,34 @@ paddings = Paddings()
 	paddings.huge           = "2.8rem"
 	paddings.gigafantastico = "3rem"
 	paddings.endless        = "3.2rem"
+"""
+
+transitions = Transitions()
+"""
+	ultra_slow = "2000ms"
+	tea_time   = "1000ms"
+	slowest    = "500ms"
+	slower     = "400ms"
+	medium     = "300ms"
+	normal     = "200ms"
+	fast       = "100ms"
+	faster     = "50ms"
+	fastest    = "20ms"
+	sonic      = "10ms"
+"""
+
+borderradius = BorderRadius()
+"""
+	micro = "0.3rem",
+	tiny = "0.4rem",
+	small = "0.5rem",
+	normal = ".75rem",
+	big = "1rem",
+	large = "1.2rem",
+	macro = "1.4rem",
+	giganto = "1.6rem",
+	massive = "1.8rem",
+	huge = "2rem",
+	gigafantastico = "3rem",
+	endless = "50%"
 """
