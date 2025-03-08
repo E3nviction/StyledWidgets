@@ -63,6 +63,8 @@ def styler(*args, advanced_css: bool=True, use_gtk: bool=False, enable_classes: 
 			style = {}
 			if key == "default":
 				key = "*"
+			if key.endswith(" ->"):
+				key = key[:-3] + " *"
 			if not use_gtk and key == "*":
 				# We use update, so the order of the styles stays the same, if we were to just __set_item__ it would make everything unset
 				style.update({"all": "unset"})
