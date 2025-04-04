@@ -1,3 +1,4 @@
+from typing import Any
 from .color import get_rgba, rgba_to_hex, rgba_add
 
 class Shared:
@@ -14,6 +15,8 @@ class Shared:
 		self.huge           = "2.8rem" if huge           is None else huge
 		self.gigafantastico = "3rem"   if gigafantastico is None else gigafantastico
 		self.endless        = "3.2rem" if endless        is None else endless
+	def __call__(self, *args: Any, **kwds: Any) -> bool:
+		return True
 
 class Contrast:
 	def __init__(self, val):
@@ -77,12 +80,18 @@ class Shadows:
 class Margins(Shared):
 	def __init__(self):
 		super().__init__(normal=".5rem")
+	def __call__(self, *args: Any, **kwds: Any) -> bool:
+		return True
 class TextSize(Shared):
 	def __init__(self):
 		super().__init__()
+	def __call__(self, *args: Any, **kwds: Any) -> bool:
+		return True
 class Paddings(Shared):
 	def __init__(self):
 		super().__init__(normal=".25rem")
+	def __call__(self, *args: Any, **kwds: Any) -> bool:
+		return True
 
 class Transitions:
 	def __init__(self):
@@ -113,6 +122,8 @@ class Transitions:
 	def set_ease_function(self, function):
 		self.ease_function = function
 		return self
+	def __call__(self, *args: Any, **kwds: Any) -> bool:
+		return True
 
 class BorderRadius(Shared):
 	def __init__(self):
@@ -130,6 +141,8 @@ class BorderRadius(Shared):
 			gigafantastico = "3rem",
 			endless = "50%"
 		)
+	def __call__(self, *args: Any, **kwds: Any) -> bool:
+		return True
 
 textsize = TextSize()
 """
